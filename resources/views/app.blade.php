@@ -1,5 +1,5 @@
 @extends('layouts')
 
 @section('content')
-    sd
+    <index></index>
 @endsection
