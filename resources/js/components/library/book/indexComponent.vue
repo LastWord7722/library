@@ -6,11 +6,18 @@
       <div class="card-book card col-3" >
         <img src="" class="card-img-top" alt="пока нету">
         <div class="card-body">
-          <h5 class="card-title ">{{books.title}}</h5>
+          <h5 class="card-title fw-bolder fs-2">{{books.title}}</h5>
           <p class="card-text">{{books.info}}</p>
-          <p class="card-text">Авторы:</p>
+          <p class="card-text fs-5">Авторы:</p>
+          <div class="text-center fw-bolder mb-2 card-text">
+            <template v-for="authors in books.authors" >
+                  {{authors.last_name +' '+ authors.first_name +',  '}}
+            </template>
+          </div>
+          <div>
           <a href="#" class="btn btn-primary">Подробнее</a>
-          <a href="#" class="destroy btn btn-danger">Удалить</a>
+          <button @click.prevent="deleteBook(books.id, books.title)" class="destroy btn btn-danger">Удалить</button>
+          </div>
         </div>
       </div>
 
@@ -21,6 +28,7 @@
 
 <script>
 export default {
+
   name: "indexBookComponent",
 
   data(){
@@ -37,9 +45,20 @@ export default {
     getBook(){
       axios.get('/public/api/book/')
       .then(res => {
-        this.books = res.data
+        this.books = res.data.data
+
       })
-    }
+    },
+
+    deleteBook(id, title){
+      let destroy = confirm('Вы уверены что хотите удалить кингу '+title+ '\n Под номером #'+ id )
+      if(destroy){
+        axios.delete(`/public/api/book/delete/${id}`)
+        .then(res => {
+          this.getBook()
+        })
+        }
+    },
   }
 }
 </script>
@@ -61,4 +80,6 @@ export default {
   .main-text:hover{
     color:purple;
   }
+
+
 </style>

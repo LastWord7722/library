@@ -18,13 +18,12 @@ return new class extends Migration
             $table->unsignedBigInteger('author_id');
             $table->unsignedBigInteger('book_id');
             $table->timestamps();
-            $table->softDeletes();
 
-            $table->index('author_id','author_id_idx');
-            $table->foreign('author_id','author_id_fk')->on('authors')->references('id')->cascadeOnDelete();
+            $table->index('author_id','author_book_author_idx');
+            $table->foreign('author_id','author_book_author_fk')->on('authors')->references('id')->cascadeOnDelete();
 
-            $table->index('book_id','book_id_idx');
-            $table->foreign('book_id','book_id_fk',)->on('books')->references('id')->cascadeOnDelete();
+            $table->index('book_id','book_author_book_idx');
+            $table->foreign('book_id','author_book_book_fk')->on('books')->references('id')->cascadeOnDelete();
         });
     }
 
