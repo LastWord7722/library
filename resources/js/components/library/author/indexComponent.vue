@@ -6,7 +6,26 @@
 
 <script>
 export default {
-  name: "indexAuthorComponent"
+  name: "indexAuthorComponent",
+  mounted() {
+    this.getAuthor()
+  },
+
+  data() {
+    return {
+      author: '',
+    }
+  },
+
+  methods: {
+    getAuthor() {
+      axios.get('/public/api/author/')
+          .then(res => {
+            this.author = res.data.data
+
+          })
+    },
+  },
 }
 </script>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AuthorController;
 use App\Http\Controllers\API\BookController;
 
 use Illuminate\Http\Request;
@@ -16,5 +17,10 @@ Route::group(['prefix' => 'author'], function (){
 Route::group(['prefix' => 'book', 'namespace'=>'App\Http\Controllers\Api'], function (){
     Route::get('/',[BookController::class, 'index'])->name('api.book.index');
     Route::delete('/delete/{book}',[BookController::class, 'delete'])->name('api.book.delete');
+});
+
+Route::group(['prefix' => 'author', 'namespace'=>'App\Http\Controllers\Api'], function (){
+    Route::get('/',[AuthorController::class, 'index'])->name('api.author.index');
+    Route::delete('/delete/{author}',[AuthorController::class, 'delete'])->name('api.author.delete');
 });
 
