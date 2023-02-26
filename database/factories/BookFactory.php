@@ -20,7 +20,7 @@ class BookFactory extends Factory
         return [
             'title'=> $this->faker->text('5'),
             'info' => $this->faker->streetName,
-            'image' => '0',
+            'image' => 'images/book.jpg',
         ];
     }
 

@@ -2,18 +2,30 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
+
+use App\Http\Requests\Book\BookRequestStore;
 use App\Http\Resources\BookResource;
 use App\Models\Book;
-use Illuminate\Http\Request;
+use App\Service\Book\BookService;
 
-class BookController extends Controller
+
+class BookController extends BaseController
 {
-    public function index(){
+    public function index()
+    {
         return BookResource::collection(Book::all());
     }
 
-    public function delete(Book $book){
+    public function store(BookRequestStore $requestStore, BookService $service)
+    {
+        $data = $requestStore->validated();
+        $dataCreate = $service->store($data);
+        return $dataCreate;
+
+    }
+
+    public function delete(Book $book)
+    {
         $book->delete();
         return response([]);
     }

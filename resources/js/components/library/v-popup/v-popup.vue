@@ -13,7 +13,7 @@
     </div>
 
     <div class="v-popup__footer">
-      <button @click.prevent="closePopup" class="btn btn-danger"> Закрыть</button>
+      <button @click.prevent="leftBtnAction" class="btn btn-danger"> Закрыть</button>
       <button class="btn btn-primary" @click.prevent="rightBtnAction">{{rightBtn}}</button>
     </div>
   </div>
@@ -38,6 +38,9 @@ export default {
 
     rightBtnAction(){
       this.$emit('rightBtnAction')
+    },
+    leftBtnAction(){
+      this.$emit('leftBtnAction')
     },
 
     closePopup(){

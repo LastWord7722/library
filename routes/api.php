@@ -16,6 +16,7 @@ Route::group(['prefix' => 'author'], function (){
 
 Route::group(['prefix' => 'book', 'namespace'=>'App\Http\Controllers\Api'], function (){
     Route::get('/',[BookController::class, 'index'])->name('api.book.index');
+    Route::post('/store',[BookController::class, 'store'])->name('api.book.create');
     Route::delete('/delete/{book}',[BookController::class, 'delete'])->name('api.book.delete');
 });
 
