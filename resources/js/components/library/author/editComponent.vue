@@ -53,7 +53,7 @@ import vPopup from '../v-popup/v-popup.vue'
 export default {
   name: "editComponent",
   props:[
-    'books'
+    'book'
   ],
   components:{
     vPopup
@@ -77,7 +77,7 @@ export default {
       this.file = this.$refs.file.files[0];
     },
 
-    updateBook(id) {
+    updateBook() {
       console.log('123')
 
     },

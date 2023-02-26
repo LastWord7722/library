@@ -23,6 +23,11 @@ class BookController extends BaseController
         return $dataCreate;
 
     }
+    public function update()
+    {
+
+
+    }
 
     public function delete(Book $book)
     {
