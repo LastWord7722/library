@@ -24,6 +24,14 @@ class BookController extends BaseController
         return $dataCreate;
 
     }
+
+    public function oneBook(BookRequestStore $request, BookService $service)
+    {
+        $data = $request->validated();
+        $dataCreate = $service->store($data);
+        return $dataCreate;
+
+    }
     public function update(BookRequestUpdate $request, Book $book)
     {
 

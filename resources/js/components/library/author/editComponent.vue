@@ -73,13 +73,20 @@ export default {
   },
 
   mounted() {
-
+    this.getOneBook()
   },
 
   methods: {
 
     getAuthor() {
       axios.get('/public/api/author/')
+          .then(res => {
+            this.authors = res.data.data
+          })
+    },
+
+    getOneBook() {
+      axios.get(`/public/api/book/oneBook/${id}`)
           .then(res => {
             this.authors = res.data.data
           })
