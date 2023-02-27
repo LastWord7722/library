@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class BookService
 {
-    public function     store($data)
+    public function store($data)
     {
         $authorIds = $data['author_ids'];
         unset($data['author_ids']);
@@ -24,18 +24,4 @@ class BookService
 
     }
 
-    public function update($data){
-        $authorIds = $data['author_ids'];
-        unset($data['author_ids']);  //
-
-        $inputImage = $data['image'];
-        if($inputImage) {
-            $data['image'] = Storage::disk('public')->put('images/image', $data ['image']);
-        }
-
-        $book = Book::firstOrcreate($data);
-        $book->authors()->attach($authorIds);
-
-        return $book;
-    }
 }
