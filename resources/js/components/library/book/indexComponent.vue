@@ -32,8 +32,8 @@
 
 <script>
 
-import createComponent from "../author/createComponent.vue";
-import editComponent from "../author/editComponent.vue";
+import createComponent from "../book/createComponent.vue";
+import editComponent from "../book/editComponent.vue";
 
 export default {
 

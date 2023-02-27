@@ -10,9 +10,11 @@
       <!--слот-->
       <slot>
         <div>
-          <label class=" text-center fw-bolder fs-4"> Выберите Обложку</label>
+          <label class=" text-center fw-bolder fs-4"> Текущая  Обложка: </label>
+          <img :src="'/public/storage/'+ book.image" class="card-img-top card-edit" alt="пока нету">
           <div class="card-body img-fluid">
-            <input v-on:change="inputFileChange" type="file" id="file" ref="file" >
+            <input v-on:change="newInputFileChange" class="addFile btn btn-success" type="file" ref="file" >
+            <button @click.prevent="uplodFile(this.id)" class="uplodeFile btn btn-success"> Добавить обложку </button>
           </div>
         </div>
         <div class="flex-column">
@@ -29,10 +31,14 @@
         <!--вывод автора-->
         <div class="row col-12">
           <div class="" aria-label="Basic checkbox toggle button group">
+            Выбранные автора сейчас:
+            <template v-for="oldAuthor in AuthorIdOld">
+              {{ oldAuthor.last_name + ' ' + oldAuthor.first_name + '  ' }}
+            </template>
             <p class="text-center fw-bolder fs-4">Выберите автора!</p>
             <template v-for="authorBook in authors">
 
-              <input type="checkbox" class="btn-check" :id="authorBook.id" v-model="AuthorId" :value='authorBook.id'>
+              <input type="checkbox" class="btn-check" :id="authorBook.id" v-model="NewIdAuther" :value='authorBook.id'>
 
               <label class="author btn btn-outline-primary" :for="authorBook.id">
                 {{ authorBook.last_name + ' ' + authorBook.first_name + '  ' }}
@@ -40,10 +46,8 @@
 
             </template>
           </div>
-
         </div>
       </slot>
-
     </v-popup>
   </div>
 </template>
@@ -61,23 +65,20 @@ export default {
   },
 
   data() {
-    return {  
+    return {
+      NewIdAuther :[],
       authors : [],
       isPopupInvisebleEdit: false,
       id:'',
       titleEdit: '',
       infoEdit:'',
       file:'',
-      AuthorId: []
+
+      AuthorIdOld: []
     }
   },
 
-  mounted() {
-    this.getOneBook()
-  },
-
   methods: {
-
     getAuthor() {
       axios.get('/public/api/author/')
           .then(res => {
@@ -85,51 +86,63 @@ export default {
           })
     },
 
-    getOneBook() {
-      axios.get(`/public/api/book/oneBook/${id}`)
-          .then(res => {
-            this.authors = res.data.data
-          })
-    },
-
-    inputFileChange(){
+    newInputFileChange(){
       this.file = this.$refs.file.files[0];
     },
 
+    uplodFile(id){
+      let formData = new FormData();
+      formData.append('image',this.file)
+
+      axios.post(`/public/api/book/uplodeFile/${id}`,
+          formData,
+          {headers:{'Content-Type':'multipart/from-data'}})
+      .then(res=>{
+        this.$parent.getBook()
+      })
+    },
+
     updateBook(id) {
-      console.log( this.titleEdit + ' ' + this.infoEdit)
-      axios.put(`/public/api/book/update/${id}`, {title: this.titleEdit, info: this.infoEdit })
+      axios.put(`/public/api/book/update/${id}`,
+          {title: this.titleEdit, info: this.infoEdit, author_ids: this.NewIdAuther })
           .then(res => {
-            console.log(res)
-            /*this.ClosePopupEdit()*/
+            this.$parent.getBook()
+            this.ClosePopupEdit()
           })
     },
 
     ShowPopupEdit() {
       this.getAuthor()
       this.isPopupInvisebleEdit = true
+
       this.id = this.book.id
       this.titleEdit = this.book.title
       this.infoEdit = this.book.info
-      this.file = this.book.image
-      this.AuthorId = this.book.authors
+      this.AuthorIdOld = this.book.authors
 
     },
 
     ClosePopupEdit() {
       this.isPopupInvisebleEdit = false
-    /*  this.id = null
+      this.id = null
       this.title = null
       this.info = null
-      this.file = null
-      this.AuthorId = []*/
 
+      this.AuthorIdOld = []
     },
   }
 }
 </script>
 
 <style scoped>
+.addFile{
+  max-width: 350px;
+  margin-right: 10px;
+}
+.card-edit{
+  min-height: 100px;
+  max-width: 190px;
+}
 .informs{
   height: 150px;
   margin-top: 10px;

@@ -79,7 +79,8 @@ export default {
     },
 
     createBook() {
-      axios.post('/public/api/book/store', {title: this.title, info: this.info,author_ids: this.checkAuthorId, image: this.file },)
+      axios.post('/public/api/book/store', {title: this.title, info: this.info,author_ids: this.checkAuthorId, image: this.file },
+          {headers: { 'Content-Type': 'multipart/form-data' }})
           .then(res => {
             alert('Книга успешно загружена')
             this.$parent.getBook()

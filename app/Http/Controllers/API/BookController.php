@@ -8,6 +8,7 @@ use App\Http\Resources\BookResource;
 use App\Models\Book;
 use App\Service\Book\BookService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class BookController extends BaseController
@@ -24,25 +25,21 @@ class BookController extends BaseController
         return $dataCreate;
 
     }
-
-    public function oneBook(BookRequestStore $request, BookService $service)
-    {
-        $data = $request->validated();
-        $dataCreate = $service->store($data);
-        return $dataCreate;
-
-    }
-    public function update(BookRequestUpdate $request, Book $book)
-    {
-
+    public function uplodeFile(Book $book, Request $request,  BookService $service){
         $data = $request->validate([
-            'title'=> 'string',
-            'info'=> 'string'
+            'image' => ''
         ]);
 
-        $book->updated($data);
+        $newImage = $service->uplodeFile($data,$book);
+        return $newImage;
+    }
 
-        return $data;
+    public function update(BookRequestUpdate $request, Book $book, BookService $service)
+    {
+        $data = $request->validated();
+        $updateBook = $service->update($data,$book);
+
+        return $updateBook;
     }
 
     public function delete(Book $book)

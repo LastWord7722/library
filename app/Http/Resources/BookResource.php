@@ -20,7 +20,7 @@ class BookResource extends JsonResource
             'info'=> $this->info,
             'image'=> $this->image,
             'created_at' => $this->created_at,
-            'authors'=>$this->authors
+            'authors'=>AuthorResource::collection($this->authors)
 
         ];
     }
