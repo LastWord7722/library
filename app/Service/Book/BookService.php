@@ -2,6 +2,7 @@
 
 namespace App\Service\Book;
 
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Support\Facades\Storage;
 
@@ -50,6 +51,28 @@ class BookService
         ]);
 
         return $book;
+    }
+
+    public function searchBook($request)
+    {
+        $books = Book::with('authors')->
+        where('title', 'LIKE', '%'.$request->search.'%')->
+        get();
+
+        $authors = Author::with('books')->
+        where('last_name', 'LIKE', '%'.$request->search.'%')->
+        get();
+
+        if($authors){
+            foreach ($authors as $author){
+                $authorBook = $author->books;
+                $res = $books->merge($authorBook);
+                return $res;
+            }
+        }else{
+            return $books;
+        }
+
     }
 
 }

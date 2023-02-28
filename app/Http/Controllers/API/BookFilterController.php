@@ -2,38 +2,29 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use App\Models\Author;
+use App\Http\Resources\BookResource;
 use App\Models\Book;
+use App\Service\Book\BookService;
 use Illuminate\Http\Request;
 
 
-class BookFilterController extends Controller
+class BookFilterController extends BaseController
 {
-    public function getBookAZ()
-    {
-        $books = Book::orderBy('title','asc')->get();
+    public function getBookAZ(){
 
-        return $books;
+        return BookResource::collection(Book::orderBy('title', 'asc')->get());
     }
 
-    public function getBookZA()
-    {
-        $books = Book::orderBy('title','desc')->get();
+    public function getBookZA(){
 
-        return $books;
+        return BookResource::collection(Book::orderBy('title', 'desc')->get());
     }
 
-    public function searchBook(Request $request){
-        $books = Book::where('title', 'LIKE', '%'.$request->search.'%')->get();
+    public function searchBook(Request $request, BookService $service){
 
-        return $books;
-        /*$aurhors = Author::with('books')->where('last_name', 'LIKE', '%'.$request->search.'%')->get();*/
+        $data = $service->searchBook($request);
 
-        /* if($aurhors){
-             foreach ($aurhors as $author)
-                 $oneAuthor = $author->books;
-                 return $oneAuthor;
-         }*/
+        return $data;
+
     }
 }

@@ -2,20 +2,19 @@
 
 
   <create-component></create-component>
+
+      <div class="btnFilter col-12 p-1 d-flex flex-row" >
+        <button @click.prevent="AZbtnAction" class="btnFilter btn btn-secondary "> A->Z</button> <!--A-Z-->
+        <button @click.prevent="ZAbtnAction" class="btnFilter btn btn-secondary "> Z->A</button> <!--Z-A-->
+        <button @click.prevent="getBook" class="btnFilter btn btn-secondary ">Исходная</button> <!--Z-A-->
+
+        <div class="input-search col-4 mt-1 d-flex flex-row">
+          <input class="form-control me-2" type="search" v-model="searchBook" placeholder="Search" name="searchBook" id="searchBook"  aria-label="Search">
+          <button class="btn btn-outline-success" @click.prevent="searchBooks()" type="submit">Search</button>
+        </div>
+      </div>
+
   <div class="row text-center">
-    <div class="btnFilter col-12 p-1  flex-column" >
-    <button @click.prevent="AZbtnAction" class="btnFilter btn btn-secondary "> A->Z</button> <!--A-Z-->
-    <button @click.prevent="ZAbtnAction" class="btnFilter btn btn-secondary "> Z->A</button> <!--Z-A-->
-    <button @click.prevent="getBook" class="btnFilter btn btn-secondary ">Исходная</button> <!--Z-A-->
-
-      <form class=" btnFilter d-flex col-4" role="search">
-        <input class="form-control me-2" type="search" v-model="searchBook" placeholder="Search"  name="searchBook" id="searchBook"  aria-label="Search">
-
-        <button class="btn btn-outline-success" @click.prevent="searchBooks()" type="submit">Search</button>
-      </form>
-  </div>
-
-
     <h1 class="mt-3 main-text">Список книг</h1>
 
     <!--список книг-->
@@ -74,7 +73,6 @@ export default {
       axios.get('/public/api/book/searchBook',
           {params: {search: this.searchBook}})
           .then(res => {
-            console.log(res.data)
             this.books = res.data
           })
     },
@@ -82,16 +80,14 @@ export default {
     AZbtnAction(){
       axios.get('/public/api/book/getBook/AZ')
           .then(res => {
-            console.log(res.data)
-            this.books = res.data
+            this.books = res.data.data
           })
     },
 
     ZAbtnAction(){
       axios.get('/public/api/book/getBook/ZA')
           .then(res => {
-            console.log(res.data)
-            this.books = res.data
+            this.books = res.data.data
           })
     },
     getBook() {
@@ -115,6 +111,10 @@ export default {
 </script>
 
 <style  scoped>
+  .input-search{
+    min-height: 40px;
+    margin-left:50%;
+  }
 
   .btnFilter{
     text-align:left;
