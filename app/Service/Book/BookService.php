@@ -3,7 +3,6 @@
 namespace App\Service\Book;
 
 use App\Models\Book;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 

@@ -1,11 +1,25 @@
 <template>
-  <div class="row  text-center">
-    <h1 class="mt-3 main-text">Список книг</h1>
-    <!--пропс-->
-   <create-component></create-component>
-    <!--список книг-->
-      <template v-for="book in books">
 
+
+  <create-component></create-component>
+  <div class="row text-center">
+    <div class="btnFilter col-12 p-1  flex-column" >
+    <button @click.prevent="AZbtnAction" class="btnFilter btn btn-secondary "> A->Z</button> <!--A-Z-->
+    <button @click.prevent="ZAbtnAction" class="btnFilter btn btn-secondary "> Z->A</button> <!--Z-A-->
+    <button @click.prevent="getBook" class="btnFilter btn btn-secondary ">Исходная</button> <!--Z-A-->
+
+      <form class=" btnFilter d-flex col-4" role="search">
+        <input class="form-control me-2" type="search" v-model="searchBook" placeholder="Search"  name="searchBook" id="searchBook"  aria-label="Search">
+
+        <button class="btn btn-outline-success" @click.prevent="searchBooks()" type="submit">Search</button>
+      </form>
+  </div>
+
+
+    <h1 class="mt-3 main-text">Список книг</h1>
+
+    <!--список книг-->
+      <template ref="books" v-for="book in books">
         <div class="card-book card col-8">
           <img :src="'/public/storage/'+book.image" class="card-img-top" alt="пока нету">
           <div class="card-body">
@@ -24,20 +38,21 @@
             </div>
           </div>
         </div>
-
       </template>
   </div>
 </template>
 
 
 <script>
-
 import createComponent from "../book/createComponent.vue";
 import editComponent from "../book/editComponent.vue";
 
-export default {
 
+
+export default {
   name: "indexBookComponent",
+
+
   components: {
     createComponent,
     editComponent,
@@ -46,6 +61,7 @@ export default {
   data() {
     return {
       books: [],
+      searchBook: [],
     }
   },
 
@@ -54,8 +70,31 @@ export default {
   },
 
   methods: {
-    getBook() {
+    searchBooks(){
+      axios.get('/public/api/book/searchBook',
+          {params: {search: this.searchBook}})
+          .then(res => {
+            console.log(res.data)
+            this.books = res.data
+          })
+    },
 
+    AZbtnAction(){
+      axios.get('/public/api/book/getBook/AZ')
+          .then(res => {
+            console.log(res.data)
+            this.books = res.data
+          })
+    },
+
+    ZAbtnAction(){
+      axios.get('/public/api/book/getBook/ZA')
+          .then(res => {
+            console.log(res.data)
+            this.books = res.data
+          })
+    },
+    getBook() {
       axios.get('/public/api/book/')
           .then(res => {
             this.books = res.data.data
@@ -71,12 +110,18 @@ export default {
             })
       }
     },
-
   }
 }
 </script>
 
 <style  scoped>
+
+  .btnFilter{
+    text-align:left;
+
+    margin-left:1%;
+    margin-top:8px;
+  }
   .btn:hover {
     box-shadow: inset 0 0 0 5px;
   ;
