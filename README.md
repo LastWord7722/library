@@ -1,17 +1,11 @@
 ###Инструкция по установке : 
 необходимое для запуска 
-    PHP 7+ 
-
-    Laravel 9
-
-    Bootstrap 
-
-    VUE 3
-
-    nodeJS 
+    PHP 8;  Laravel 9; Bootstrap; VUE 3; nodeJS 
     
 
 ##В консоле вводим :
+
+Клонируем проект, устанавливаем необходимые зависимости и инициализируем проект
 ```
 git clone https://github.com/LastWord7722/library.git
 composer install
@@ -21,7 +15,7 @@ npm i @vitejs/plugin-vue
 npm install vue@next vue-loader@next
 php artisan ui bootstrap
 ```
-файл .env.example переиминовать в .env  внутри файла подключить базу данных mySQL
+#Файл .env.example переиминовать в .env  внутри файла подключить базу данных mySQL
 ```
 php artisan key:generate
 php artisan migrate
@@ -39,6 +33,7 @@ import vue from '@vitejs/plugin-vue';
 ```
 И то что app.js  выглядить вот так:
 ```javascript
+
 `import './bootstrap';
 import { createApp } from 'vue';
 import router from "./router.js";
@@ -52,4 +47,5 @@ app.component('index', index)
 app.use(router)
 
 app.mount('#app');`
+
 ```
