@@ -1,6 +1,6 @@
 ###Инструкция по установке : 
 необходимое для запуска 
-    PHP 8;  Laravel 9; Bootstrap; VUE 3; nodeJS 
+    PHP 8;  Laravel 9; Bootstrap; VUE 3; nodeJS, composer
     
 
 ##В консоле вводим :
