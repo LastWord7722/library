@@ -31,7 +31,7 @@
       <!-- книги     -->
       <div class="row col-12">
         <div class="" aria-label="Basic checkbox toggle button group">
-          <p class="text-center fw-bolder fs-4">Выберите другие книги!</p>
+          <p class="text-center fw-bolder fs-4">Выберите другие книги!(Обязательное поле)</p>
           <template v-for="book in books">
 
             <input type="checkbox" class="btn-check" :id="book.id" v-model="newBookId" :value='book.id'>

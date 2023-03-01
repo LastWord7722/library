@@ -34,7 +34,7 @@
             <template v-for="oldAuthor in AuthorIdOld">
               {{ oldAuthor.last_name + ' ' + oldAuthor.first_name + '  ' }}
             </template>
-            <p class="text-center fw-bolder fs-4">Выберите автора!</p>
+            <p class="text-center fw-bolder fs-4">Выберите автора!(Обязательное поле)</p>
             <template v-for="authorBook in authors">
 
               <input type="checkbox" class="btn-check" :id="authorBook.id" v-model="NewIdAuther" :value='authorBook.id'>

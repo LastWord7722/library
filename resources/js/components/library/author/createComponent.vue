@@ -9,16 +9,16 @@
       <!--создание-->
       <div class="flex-column">
         <div class="input-group  mt-3 w-50">
-          <span class="input-group-text">Имя</span>
+          <span class="input-group-text">Имя (Обязательное поле)</span>
           <input type="text" v-model="first_name" class="form-control">
         </div>
 
         <div class="input-group  mt-3 w-50">
-          <span class="input-group-text">Фамилия</span>
+          <span class="input-group-text">Фамилия(Обязательное поле)</span>
           <input type="text" v-model="last_name" class="form-control">
         </div>
         <div class="input-group  mt-3 w-50">
-          <span class="input-group-text">Очество</span>
+          <span class="input-group-text">Очество </span>
           <input type="text" v-model="middle_name" class="form-control">
         </div>
       </div>

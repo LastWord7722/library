@@ -7,14 +7,14 @@
     <!--слот-->
     <slot>
       <div>
-        <label class=" text-center fw-bolder fs-4"> Выберите Обложку</label>
+        <label class=" text-center fw-bolder fs-4"> Выберите Обложку (Обязательное поле)</label>
         <div class="card-body img-fluid">
           <input v-on:change="inputFileChange" type="file" id="file" ref="file" >
         </div>
       </div>
       <div class="flex-column">
         <div class="input-group  mt-3 w-100">
-          <span class="input-group-text"  >Название книги</span>
+          <span class="input-group-text"  >Название книги (Обязательное поле)</span>
           <input type="text" v-model="title" class="form-control">
         </div>
       </div>
@@ -26,7 +26,7 @@
       <!--         вывод автора-->
       <div class="row col-12">
         <div class="" aria-label="Basic checkbox toggle button group">
-          <p class="text-center fw-bolder fs-4">Выберите автора!</p>
+          <p class="text-center fw-bolder fs-4">Выберите автора!(Обязательное поле)</p>
           <template v-for="authorBook in author">
 
             <input type="checkbox" class="btn-check" :id="authorBook.id" v-model="checkAuthorId" :value='authorBook.id'>
