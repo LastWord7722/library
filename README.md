@@ -1,18 +1,27 @@
-###Инструкция по установке : 
+###  Инструкция по установке : 
 необходимое для запуска 
     PHP 8;  Laravel 9; Bootstrap; VUE 3; nodeJS, composer
 
 ###  ВАЖНАЯ информация!
 Так как я использую OpenServer,  стоить обратить внимание что axios запрос начинаеться с /public !
-Поэтому если не использовать OpenServer, все запросы будут работать по другому адресу без 
+Поэтому если не использовать OpenServer, все запросы будут работать по другому адресу (скорее всего)
+
 В связи с этим создал отдельную ветку в этом репозитории под названием nopePublic, там можно взять весрию проекта без /public в axios запросах 
+В master ветке они есть
     
 
-##В консоле вводим :
+##   В консоле вводим :
 
-Клонируем проект,инициализируем и устанавливаем необходимые зависимости
+Клонируем проект 
 ```
-git clone https://github.com/LastWord7722/library.git
+git clone https://github.com/LastWord7722/library.git  // master branch 
+```
+Или
+```
+git clone --branch=nopePublic https://github.com/LastWord7722/library.git  //nopePublic branch
+```
+Инициализируем и устанавливаем необходимые зависимости
+```
 composer install
 npm  install
 php artisan ui vue
@@ -20,7 +29,9 @@ npm i @vitejs/plugin-vue
 npm install vue@next vue-loader@next
 php artisan ui bootstrap
 ```
-#Файл .env.example переиминовать в .env  внутри файла подключить базу данных mySQL
+  Файл .env.example переиминовать в .env  внутри файла нужно подключить базу данных mySQL
+
+  Далее :
 ```
 php artisan key:generate
 php artisan migrate
