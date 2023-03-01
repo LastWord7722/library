@@ -26,7 +26,7 @@ class BookRequestStore extends FormRequest
         return [
             'title' => 'required|string',
             'info' => 'nullable|string',
-            'image' => 'required|file',
+            'image' => 'required|file|max:2024',
             'author_ids' => 'required|array',
         ];
     }

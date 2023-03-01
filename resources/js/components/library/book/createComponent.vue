@@ -1,6 +1,6 @@
 <template>
   <v-popup v-if="isPopupInviseble"
-           @closePopup="ClosePopup"
+           @leftBtnAction="ClosePopup"
            @rightBtnAction="createBook"
            rightBtn = 'Добавить'
            nameTitle = 'Добавить книгу:'>
@@ -30,17 +30,14 @@
           <template v-for="authorBook in author">
 
             <input type="checkbox" class="btn-check" :id="authorBook.id" v-model="checkAuthorId" :value='authorBook.id'>
-
             <label class="author btn btn-outline-primary" :for="authorBook.id">
               {{ authorBook.last_name + ' ' + authorBook.first_name + '  ' }}
             </label>
 
           </template>
         </div>
-
       </div>
     </slot>
-
   </v-popup>
   <button @click.prevent="ShowPopup" class="grn-btn btn btn-success col-12">Добавить книгу</button>
 </template>

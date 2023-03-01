@@ -26,7 +26,7 @@ class AuthorRequestStore extends FormRequest
         return [
             'first_name' => 'required|string',
             'last_name' => 'required|string',
-            'middle_name' => 'string',
+            'middle_name' => 'nullable',
             'book_ids' => 'required|array',
         ];
     }

@@ -13,7 +13,7 @@ class Author extends Model
     protected $table = 'authors';
 
     protected $fillable = [
-        'name',
+        'first_name',
         'middle_name',
         'last_name',
 

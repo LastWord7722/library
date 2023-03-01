@@ -20,8 +20,7 @@ class AuthorResource extends JsonResource
             'middle_name'=> $this->middle_name,
             'last_name'=> $this->last_name,
             'created_at' => $this->created_at,
-            'books'=>$this->books
-
+            'books'=> $this->books,
         ];
     }
 }

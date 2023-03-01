@@ -3,7 +3,6 @@
     <div class="v-popup__header text-center">
     <p class="text-center fs-2">{{nameTitle}}</p>
     </div>
-
     <div class="v-popup__content">
       <div class="p-3 col-12">
         <slot>
@@ -11,7 +10,6 @@
         </slot>
       </div>
     </div>
-
     <div class="v-popup__footer">
       <button @click.prevent="leftBtnAction" class="btn btn-danger"> Закрыть</button>
       <button class="btn btn-primary" @click.prevent="rightBtnAction">{{rightBtn}}</button>
@@ -42,10 +40,6 @@ export default {
     leftBtnAction(){
       this.$emit('leftBtnAction')
     },
-
-    closePopup(){
-      this.$emit('closePopup')
-    }
   }
 }
 

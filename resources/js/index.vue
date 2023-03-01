@@ -4,7 +4,7 @@
     <div class="d-flex flex-row m-lg-1  ">
       
         <div class="m-lg-1">
-          <router-link :to="{name:'library.author.index'}" class="text-navbar"> Author</router-link>
+          <router-link :to="{name:'library.author.index'}" class="text-navbar"> Author </router-link>
         </div>
 
         <div class="m-lg-1">
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+
 export default {
   name: "index"
 }

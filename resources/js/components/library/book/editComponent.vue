@@ -1,7 +1,6 @@
 <template>
   <div>
-      <button @click.prevent="ShowPopupEdit" class="mb-1 btn btn-success">Редактировать</button>
-
+    <button @click.prevent="ShowPopupEdit" class="mb-1 btn btn-success">Редактировать</button>
     <v-popup v-if="isPopupInvisebleEdit"
              @rightBtnAction="updateBook(this.id)"
              @leftBtnAction="ClosePopupEdit"

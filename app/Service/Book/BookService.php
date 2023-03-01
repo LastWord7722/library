@@ -14,7 +14,7 @@ class BookService
         $authorIds = $data['author_ids'];
         unset($data['author_ids']);
 
-       $data['image'] = Storage::disk('public')->put('images/book', $data ['image']);
+        $data['image'] = Storage::disk('public')->put('images/book', $data ['image']);
 
         $book = Book::firstOrcreate($data);
         $book->authors()->attach($authorIds);
