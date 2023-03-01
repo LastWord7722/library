@@ -71,7 +71,7 @@ export default {
 
   methods: {
     getBook(page=1) {
-      axios.get(`/public/api/book?page=`+page)
+      axios.get(`/api/book?page=`+page)
           .then(res => {
             this.books = res.data.data
             this.pagination = res.data
@@ -80,7 +80,7 @@ export default {
 
 
     searchBooks(){
-      axios.get('/public/api/book/searchBook',
+      axios.get('/api/book/searchBook',
           {params: {search: this.searchBook}})
           .then(res => {
             this.books = res.data
@@ -88,14 +88,14 @@ export default {
     },
 
     AZbtnAction(){
-      axios.get('/public/api/book/getBook/AZ')
+      axios.get('/api/book/getBook/AZ')
           .then(res => {
             this.books = res.data.data
           })
     },
 
     ZAbtnAction(){
-      axios.get('/public/api/book/getBook/ZA')
+      axios.get('/api/book/getBook/ZA')
           .then(res => {
             this.books = res.data.data
           })
@@ -104,7 +104,7 @@ export default {
     deleteBook(id, title) {
       let destroy = confirm('Вы уверены что хотите удалить кингу ' + title + '\n Под номером #' + id)
       if (destroy) {
-        axios.delete(`/public/api/book/delete/${id}`)
+        axios.delete(`/api/book/delete/${id}`)
             .then(res => {
               this.getBook()
             })

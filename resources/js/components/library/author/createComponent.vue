@@ -65,14 +65,14 @@ export default {
   methods: {
 
     getBook() {
-      axios.get('/public/api/book/')
+      axios.get('/api/book/')
           .then(res => {
             this.books = res.data.data
           })
     },
 
     createAuthor() {
-      axios.post('/public/api/author/store', {
+      axios.post('/api/author/store', {
             last_name: this.last_name,
             middle_name: this.middle_name,
             first_name: this.first_name,

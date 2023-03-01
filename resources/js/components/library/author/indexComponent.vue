@@ -76,7 +76,7 @@ export default {
 
   methods:{
     getAuthors(page = 1) {
-      axios.get('/public/api/author/?page='+page)
+      axios.get('/api/author/?page='+page)
           .then(res => {
             this.authors = res.data.data
             this.pagination = res.data
@@ -85,7 +85,7 @@ export default {
     deleteaAuthor(id, first_name) {
       let destroy = confirm('Вы уверены что хотите удалить кингу ' + first_name + '\n Под номером #' + id)
       if (destroy) {
-        axios.delete(`/public/api/author/delete/${id}`)
+        axios.delete(`/api/author/delete/${id}`)
             .then(res => {
               this.getAuthors()
             })
@@ -93,7 +93,7 @@ export default {
     },
 
     searchAuthor(){
-      axios.get('/public/api/author/searchAuthor',
+      axios.get('/api/author/searchAuthor',
           {params: {search: this.searchBook}})
           .then(res => {
             this.authors = res.data
@@ -101,7 +101,7 @@ export default {
     },
 
     AZbtnAction(){
-      axios.get('/public/api/author/getAuthor/AZ')
+      axios.get('/api/author/getAuthor/AZ')
           .then(res => {
             console.log(res.data.data)
             this.authors = res.data.data
@@ -109,7 +109,7 @@ export default {
     },
 
     ZAbtnAction(){
-      axios.get('/public/api/author/getAuthor/ZA')
+      axios.get('/api/author/getAuthor/ZA')
           .then(res => {
             this.authors = res.data.data
           })

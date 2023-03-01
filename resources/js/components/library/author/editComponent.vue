@@ -81,14 +81,14 @@ export default {
   methods: {
 
     getBooks() {
-      axios.get('/public/api/book/')
+      axios.get('/api/book/')
           .then(res => {
             this.books = res.data.data
           })
     },
 
     updateAuthor(id) {
-      axios.put(`/public/api/author/update/${id}`,
+      axios.put(`/api/author/update/${id}`,
           {
             last_name: this.last_nameEdit,
             middle_name: this.middle_nameEdit,

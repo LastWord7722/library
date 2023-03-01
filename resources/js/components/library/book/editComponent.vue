@@ -79,7 +79,7 @@ export default {
 
   methods: {
     getAuthor() {
-      axios.get('/public/api/author/')
+      axios.get('/api/author/')
           .then(res => {
             this.authors = res.data.data
           })
@@ -93,7 +93,7 @@ export default {
       let formData = new FormData();
       formData.append('image',this.file)
 
-      axios.post(`/public/api/book/uplodeFile/${id}`,
+      axios.post(`/api/book/uplodeFile/${id}`,
           formData,
           {headers:{'Content-Type':'multipart/from-data'}})
       .then(res=>{
@@ -102,7 +102,7 @@ export default {
     },
 
     updateBook(id) {
-      axios.put(`/public/api/book/update/${id}`,
+      axios.put(`/api/book/update/${id}`,
           {title: this.titleEdit, info: this.infoEdit, author_ids: this.NewIdAuther })
           .then(res => {
             this.$parent.getBook()
